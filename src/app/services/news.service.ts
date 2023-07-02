@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class NewsService {
-  private apiKey = 'b4893141e40b4d2085483fde98f82558';
-  private apiUrl = 'https://newsapi.org/v2/';
+  private apiKey = '';
+  private apiUrl = '';
 
   constructor(private http: HttpClient) {}
 
