@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lucas News</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-searchbar (ionInput)="handleSearch($event)"></ion-searchbar>
+  </div>
+
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="12" *ngFor="let article of filteredNews">
+        <ion-card>
+          <img [src]="article.urlToImage" alt="Article Image" />
+          <ion-card-content>
+            <ion-card-title>{{ article.title }}</ion-card-title>
+            <ion-card-subtitle>{{ article.author }}</ion-card-subtitle>
+            <p>{{ article.description }}</p>
+          </ion-card-content>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="full" color="primary" (click)="showArticleDetails(article)">
+                Show Details
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="full" color="secondary" [href]="article.url" target="_blank">
+                Read More
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-padding" *ngIf="totalResults > pageSize">
+    <ion-button (click)="previousPage()" [disabled]="currentPage === 1" expand="full">Previous Page</ion-button>
+    <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages" expand="full">Next Page</ion-button>
+  </div>
+</ion-content>
